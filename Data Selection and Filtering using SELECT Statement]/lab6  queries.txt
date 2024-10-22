@@ -1,0 +1,136 @@
+update emp
+set DEPTNO =40
+where EMPNO= 7566;
+
+delete from dept
+where deptNo= 50;
+
+
+truncate table bonus
+
+		//show all table data
+select *
+from emp;
+
+		// show data of specific columns
+
+select ename, job , sal
+from emp;
+
+
+		//select the names that are distinct(do not repeat)
+
+SELECT DISTINCT ename,deptno
+from emp;
+
+		//select the distinct department numbers
+
+SELECT DISTINCT deptno
+from emp;
+
+		//to get the annual salary of employee
+
+SELECT emp.ENAME , emp.JOB , emp.SAL, emp.sal*12
+from emp;
+
+		//display empoyee's name,job, salary, and increment of 5%of their salaries
+ 
+SELECT emp.ENAME , emp.JOB , emp.SAL, (emp.sal*5/100)+emp.sal
+from emp;
+
+		// To change the name of column when we display specific data
+
+SELECT emp.ENAME as "Employee_Name", emp.JOB , emp.SAL as "Salary", (emp.sal*0.05)+emp.sal
+from emp;
+
+		//operation not performed on null value
+
+SELECT emp.ENAME as "Employee_Name", emp.comm+100 as "Commission" 
+from emp;
+
+    	   ename               job
+ 	//[Smith] works as a [clerk] and he was hired on [hiredate] and he earns annualSalary[sal]
+
+SELECT concat(ename , "works as a " ,job  , "and he was hired on" , hiredate , "and he earns annual salary", emp.sal*12) as "Employee_details"
+from emp;
+
+		// concatenation of a column with null value and a column with a string will be null
+SELECT concat(ename , " " ,comm  ) as "Employee_details"
+from emp;
+
+
+		//display all the employees of a specific manger
+Select emp.ename, emp.empno, emp.MGR
+from emp
+where emp.MGR= 7698;
+
+		// display all the employees who are working as a clerk
+
+		//Display employee name, id and job of those employees 
+		who works as a clerk. give alias to empno as "Employee ID"
+		and name as "Employee Name".
+
+
+Select emp.ename as "Employee_name", emp.empno as "Emp_ID" , emp.job
+from emp
+where emp.job= "clerk";
+
+
+		//Display employee name, id and deptno of those employees
+		who works in deptno 30. give alias to empno as "Employee ID"
+		and name as "Employee Name".
+
+Select emp.ename as "Employee_name", emp.empno as "Emp_ID" , emp.deptno
+from emp
+where emp.deptno= 30;
+
+
+Select emp.ename as "Employee_name", emp.empno as "Emp_ID" , emp.hiredate
+from emp
+where emp.hiredate= '1981-04-02';
+
+
+Select *
+from emp
+where emp.hiredate > '1981-04-02';
+
+
+Select *
+from emp
+where emp.hiredate > '1981-04-02'
+ORDER BY emp.HIREDATE DESC;
+
+
+		//Display employee name, job and salary of those employees
+		who has salary less than or equal to 2000.
+
+
+Select emp.ename, emp.sal
+from emp
+where emp.sal>=2000.0;
+
+		//use of between and AND
+
+Select emp.ename, emp.sal
+from emp
+where emp.sal BETWEEN 800 and 2000;
+
+		//use of between and AND
+
+Select emp.ename, emp.job, emp.hiredate
+from emp
+where emp.hiredate BETWEEN '1980-01-01' and '1981-12-13'; 
+
+		//use of IN
+
+Select emp.ename, emp.MGR
+from emp
+where emp.MGR IN (7835, 7902, 8676);
+
+
+		// display those employees whose commission is not null
+
+Select emp.ename, emp.job, emp.comm
+from emp
+where emp.comm is not null;
+

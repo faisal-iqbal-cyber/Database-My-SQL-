@@ -1,0 +1,116 @@
+
+				Questions
+
+		select all the employees that were hired on the second 
+		month of any year and any day.
+
+				solution:
+		
+		SELECT ename, hiredate
+		from emp
+		where hiredate LIKE "_ _ _ _ -  02 - % ";
+		(_)==> length is matter
+		(%)==> length is not matter
+
+
+				Questions# 02
+
+	select the employee's name, job and sal of those employees
+	who have salary >= 1500 but they shouldn't have jobs of
+	either president or salesman. 
+				Solution:
+
+	SELECT ename,sal,job
+	from emp
+	where sal >= 1500 and job !="president" and job  !="salesman";
+
+				Questions# 03
+
+
+	sort salery of department base in descending oredr
+
+				sloution:
+
+
+	SELECT ename,sal,comm
+	from emp
+	order by depno,comm desc;
+
+	//here deptno is our primary column jiski base pr sorting hogi
+
+				Questions# 04
+
+		joints
+	
+				sloution:
+
+
+	SELECT concat(employees.FIRST_NAME , " " , employees.LAST_NAME) AS "Employee Name", jobs.JOB_TITLE 
+	FROM employees NATURAL JOIN jobs
+	ORDER BY employees.EMPLOYEE_ID;
+	
+
+
+				Questions# 05
+
+
+		solution:
+
+	SELECT departments.DEPARTMENT_NAME, "", locations.CITY
+	from departments NATURAL JOIN locations
+	order by departments.LOCATION_ID=1700;
+
+
+
+
+			Questions# 06
+
+
+	solution:
+
+
+			SELECT concat(employees.FIRST_NAME, "",employees.LAST_NAME) AS" Employee Name",departments.DEPARTMENT_NAME
+from employees JOIN departments USING(department_id)
+order by employees.EMPLOYEE_ID;
+
+			Questions# 07
+
+
+
+	solution:
+
+	SELECT departments.DEPARTMENT_NAME, locations.CITY,countries.COUNTRY_NAME, regions.REGION_NAME
+	from departments NATURAL JOIN locations NATURAL JOIN countries NATURAL JOIN regions;
+
+
+			Question#08
+
+
+	solution:
+	
+
+	SELECT concat(employees.FIRST_NAME , " " , employees.LAST_NAME) AS "Employee Name", departments.DEPARTMENT_NAME
+	FROM employees JOIN departments ON(employees.DEPARTMENT_ID=departments.DEPARTMENT_ID);
+
+			Question#09
+
+
+	solution:
+
+		SELECT d.DEPARTMENT_ID, loc.CITY
+		from departments d JOIN locations loc;
+
+
+			Question+10
+
+	solution:
+
+	SELECT e.first_name, d.department_name
+	from employees e JOIN departments d ON(e.d_id = d.DEPARTMENT_ID);
+
+
+	select concat(e.FIRST_NAME," ", e.LAST_NAME)As "Employees Detail", d.DEPARTMENT_NAME,l.CITY, 	c.COUNTRY_NAME, r.REGION_NAME
+	FROM employees e join departments d on(e.DepID=d.DEPARTMENT_ID) natural join  locations l 	natural join countries c natural join regions r
+	where e.EMPLOYEE_ID BETWEEN 100 and 110;
+
+	

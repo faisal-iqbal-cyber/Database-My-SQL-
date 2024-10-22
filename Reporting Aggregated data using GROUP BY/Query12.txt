@@ -1,0 +1,83 @@
+                                   Lab Manual 12
+
+    1
+    	Display the highest, lowest, sum, and average salary of all employees. Label the 
+		columns Maximum, Minimum, Sum, and Average respectively. Round your results to the 
+		nearest whole number
+
+	Query:
+
+		SELECT round(MAX(SAL),0)"Maximum", round(MIN(SAL),0)"Minimum", round(SUM(SAL),0)"Sum", round(AVG(SAL),0)"Average"
+		FROM emp
+
+	2
+    	Modify the above query to display the minimum, maximum, sum, and average salary for 
+		each job type.
+
+	Query:
+
+		SELECT emp.JOB, round(MAX(SAL),0)"Maximum", round(MIN(SAL),0)"Minimum", round(SUM(SAL),0)"Sum", round(AVG(SAL),0)"Average"
+		FROM emp
+		GROUP BY emp.JOB
+
+	3
+    	Write a query to display the number of people with the same job.
+
+	Query:
+
+		SELECT COUNT(emp.ENAME)"Count", emp.JOB
+		FROM emp
+		GROUP BY emp.JOB
+
+	4
+    	Determine the number of managers without listing them. Label the column Number of 
+		Managers. Hint: Use the MGR column to determine the number of managers.
+
+
+	Query:
+
+		SELECT COUNT(DISTINCT emp.MGR)"Number of Managers"
+		FROM emp
+
+	5
+    	Write a query that displays the difference between the highest and lowest salaries. 
+		Label the column DIFFERENCE.
+
+
+	Query:
+
+		SELECT MAX(sal) - MIN(sal) "Difference"
+		FROM emp
+
+	6
+    	Display the manager id and the salary of the lowest paid employee for that manager. 
+		Exclude anyone whose manager is not known. Exclude any groups where the minimum 
+		salary is less than $1500. Sort the output in descending order of minimum salary
+
+
+	Query:
+
+		SELECT emp.MGR, MIN(sal)"Lowest Paid Salary"
+		FROM emp
+		WHERE emp.MGR is not null
+		GROUP BY emp.MGR
+		HAVING MIN(sal)>=1500
+		ORDER BY sal DESC;
+
+	7
+    	Write a query to display each department’s name, location, number of employees, and 
+		the average salary of all employees of that department. Label the columns Name, 
+		Location, Number of People, and Salary respectively.
+
+
+	Query:
+
+		SELECT dept.DNAME"Name", dept.LOC"Location", COUNT(emp.ENAME)"Numbers of People", AVG(emp.SAL)"Salary" 
+		FROM emp natural JOIN dept
+		GROUP BY dept.DNAME, dept.LOC
+
+		
+
+		
+
+    	

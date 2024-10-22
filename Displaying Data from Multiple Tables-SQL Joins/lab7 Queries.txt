@@ -1,0 +1,78 @@
+select ename, job, sal
+from emp
+where ename  like "A%" ;
+
+select ename, job, sal
+from emp
+where ename  like "%S" ;
+
+
+
+		//select all the employees that were hired in the second month of any year and any day	
+	
+select  ename, job , hiredate
+from emp
+where hiredate like "____-02-%" ;
+
+
+select  ename, job , hiredate
+from emp
+where hiredate like "%-02-%" ;
+
+
+		//use of AND operator in the WHERE clause 
+
+select ename, job, COMM,sal
+from emp
+where  sal>=1500 AND comm is not null;
+
+
+		//select the employee's name, job and sal of those employees
+		who have salary >= 1500 but they shouldn't have jobs of
+		either president or salesman. 
+
+select ename, job, COMM,sal
+from emp
+where  sal>=1500 AND job NOT IN("president", "salesman");
+
+	
+		//Sort the salary in descending order
+
+select ename, job, COMM,sal
+from emp
+order by sal desc;
+
+
+		//Sort the salary on the base of department
+
+select ename, job, sal,deptno
+from emp
+order by deptno , sal desc;
+
+
+		//use of joins 
+
+SELECT concat(employees.FIRST_NAME , " " , employees.LAST_NAME) AS "Employee Name", jobs.JOB_TITLE 
+FROM employees NATURAL JOIN jobs
+ORDER BY employees.EMPLOYEE_ID;
+
+
+SELECT concat(employees.FIRST_NAME , " " , employees.LAST_NAME) AS "Employee Name", departments.DEPARTMENT_NAME
+FROM employees  JOIN departments USING (department_ID)
+ORDER BY employees.EMPLOYEE_ID;
+
+
+SELECT departments.DEPARTMENT_NAME, locations.CITY,
+countries.COUNTRY_NAME
+from departments NATURAL JOIN locations NATURAL Join countries
+
+
+SELECT concat(employees.FIRST_NAME , " " , employees.LAST_NAME) AS "Employee Name", departments.DEPARTMENT_NAME
+FROM employees  JOIN departments ON (employees.DEPARTMENT_ID= departments.DEPARTMENT_ID)
+ORDER BY employees.EMPLOYEE_ID;
+
+select e.first_name , d.department_name
+from employees e join departments d ON (e.d_id =d.DEPARTMENT_ID);
+
+SELECT d.department_name , loc.city
+FROM departments d JOIN locations loc;

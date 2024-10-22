@@ -1,0 +1,47 @@
+                              CP#03
+
+    Q1:
+    	Display the country name and region name of all the countries who are in region 1, 2 or 4.
+
+    Query:
+    	SELECT c.COUNTRY_NAME, c.REGION_ID, r.REGION_NAME
+		FROM countries c JOIN regions r ON(c.REGION_ID=r.REGION_ID)
+		WHERE r.REGION_ID IN(1,2,4);
+
+	Q2:
+    	Create a query that displays employee name, department numbers, and all the employees who work in the same department as employee. Label the columns Department, Employee, and Colleague.
+
+
+    Query:
+    	SELECT concat(e.FIRST_NAME,"  ",e.LAST_NAME)"Name", e.depID"Department",concat(d.FIRST_NAME,"  ",d.LAST_NAME)"Colleague"
+		FROM employees e JOIN employees d ON(e.depID=d.depID)
+		WHERE e.EMPLOYEE_ID!=d.EMPLOYEE_ID;
+
+	Q3:
+    	Display the names and hire dates of all employees who were hired before their managers, along with their manager’s names and hire dates. Label the columns Employee, Emp Hired, Manager, Mgr Hired.
+
+    Query:
+    	SELECT concat(e.FIRST_NAME,"  ", e.LAST_NAME)"Employee", e.HIRE_DATE"Emp Hired",concat(m.FIRST_NAME,"  ", m.LAST_NAME)"Mgr",m.HIRE_DATE"Mgr Hired"
+		FROM employees e JOIN employees m ON(e.MANAGER_ID=m.EMPLOYEE_ID)
+		WHERE e.HIRE_DATE<m.HIRE_DATE;
+
+	Q4:
+    	The HR department wants to determine the names of all employees who were hired after Davies. Create a query to display the name and hire date of any employee hired after employee Davies.
+
+    Query:
+
+    	SELECT concat(e.FIRST_NAME,"",e.LAST_NAME)As"Name",e.HIRE_DATE"Hire Date"
+		FROM employees e
+		WHERE e.HIRE_DATE>(SELECT HIRE_DATE FROM employees WHERE LAST_NAME="Davies");
+
+
+    Q5:
+    	Show the department id, name and location id of those departments that are located in the location as the department with ID 10.
+
+    Query:
+
+    	SELECT d.DEPARTMENT_ID, d.DEPARTMENT_NAME, d.LOCATION_ID
+		FROM departments d
+		WHERE d.LOCATION_ID=(SELECT LOCATION_ID FROM departments WHERE DEPARTMENT_ID=10);
+
+    	

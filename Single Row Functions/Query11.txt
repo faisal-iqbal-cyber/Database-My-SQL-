@@ -1,0 +1,95 @@
+                                       (Quereies Lab 11)
+
+   	Q1:
+   		 Write a query to display the current date. Label the column Date. 
+
+   	Query:
+
+   		SELECT CURRENT_DATE()"Date";
+
+   	Q2:
+   		The HR department needs a report to display the employee ID, name, salary, and salary 
+		increased by 15.5% (expressed as a whole number) for each employee. Label the column 
+		New Salary.
+ 
+
+   	Query:
+   	
+   		SELECT employees.EMPLOYEE_ID, concat(employees.FIRST_NAME ," ", employees.LAST_NAME)"Name",employees.SALARY, round(employees.SALARY+(employees.SALARY*0.155),0)"New Salary"
+		FROM employees;
+
+
+	Q3:
+   		Modify above query to add a column that subtracts the old salary from the new salary. 
+		Label the column Increase. Round the “increase” to two decimal places
+ 
+
+   	Query:
+   	
+   		SELECT e.EMPLOYEE_ID, concat(e.FIRST_NAME ," ", e.LAST_NAME) As"Name", e.SALARY As "Old Salary", round(e.SALARY+(e.SALARY * 0.155), 0) AS "New Salary", round((e.SALARY+ (e.SALARY*0.155))- e.SALARY, 2) As "Increase"
+		FROM employees e;
+
+	Q4:
+   		Write a query that displays the employee name (with the first letter lowercase and all 
+		other letters uppercase) and the length of the last name for all employees whose name 
+		starts with the letters j, a, or m. Give each column an appropriate label. Sort the results 
+		by the employees’ names.
+ 
+
+   	Query:
+   		SELECT concat(lower(substr(employees.FIRST_NAME,1,1)), upper(substr(employees.FIRST_NAME,2)))AS "Name", length(employees.LAST_NAME)AS "Length"
+		FROM employees
+		where substr(employees.FIRST_NAME,1,1) IN('e','j','m')
+		ORDER BY employees.FIRST_NAME;
+
+	Q5:
+   		Create a report that produces the following for each employee: <employee name> earns
+		<salary> monthly but wants <3 times salary>. Label the column Dream Salaries. 
+ 
+
+   	Query:
+   		SELECT concat(e.FIRST_NAME," ", e.LAST_NAME, " earns ", e.SALARY, " monthly but wants ", e.SALARY*3) AS"Dream Salaries"
+		FROM employees e
+
+	Q6:
+   		Create a query to display the last name and salary for all employees. Format the salary to 
+		be 15 characters long, left-padded with the $ symbol. Label the column SALARY. 
+
+   	Query:
+   		SELECT e.LAST_NAME,LPAD(FORMAT(e.SALARY, 2), 15, '$') AS "Salary"
+		FROM employees e;
+
+	Q7:
+   		Create a query that displays the first eight characters of the employees’ first name and 
+		indicates the amounts of their salaries with asterisks. Each asterisk signifies a thousand 
+		dollars. Sort the data in descending order of salary. Label the column 
+		EMPLOYEES_AND_THEIR_SALARIES. Also display its original salary. 
+
+   	Query:
+   		SELECT CONCAT(SUBSTR(e.FIRST_NAME, 1, 8), " ", REPEAT('*', FLOOR(e.SALARY / 1000))) AS "EMPLOYEES_AND_THEIR_SALARIES", 
+    	e.SALARY AS "Original Salary"
+		FROM employees e
+		ORDER BY e.SALARY DESC;
+
+	Q8:
+   		The HR department wants to find the length of employment for each employee. For each 
+		employee, display the name and calculate the number of months between today and the 
+		date on which the employee was hired. Label the column MONTHS_WORKED. Order your 
+		results by the number of months employed. Round the number of months up to the 
+		closest whole number. 
+
+   	Query:
+   		SELECT CONCAT(e.FIRST_NAME ," ", e.LAST_NAME) AS "NAME" , TIMESTAMPDIFF(MONTH, e.HIRE_DATE, CURRENT_DATE()) AS "MONTHS_WORKED"
+		FROM employees e
+		ORDER BY MONTHS_WORKED;
+
+   	Q9:
+   		Create a query that displays the employees’ last names and commission amounts. If an 
+		employee does not earn commission, show “No Commission.” Label the column COMM.
+ 
+   	Query:
+   		SELECT employees.LAST_NAME, ifnull(employees.COMMISSION_PCT,"No Commission") AS "COMM"
+		FROM employees
+
+
+   		

@@ -1,0 +1,40 @@
+body{
+	background-image: url(yellow.png);
+	background-repeat:no-repeat;
+	background-size: cover;
+}
+
+input[type="submit"]{
+			background-color: green;
+			color: white;
+}
+input[type="reset"]{
+			background-color: red;
+			color: white;
+}
+
+ul{
+	background-color:white ;
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+li{
+	display: inline-block;
+	margin: 15px;
+	padding: 5px;
+	background-color:white ;
+
+}
+
+.header{
+	text-align: center;
+	background-color: white;
+}
+
+#info{
+	text-align: center;
+	background-color: white;
+}
+

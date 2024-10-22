@@ -1,0 +1,49 @@
+Syntax Creating Table:
+
+	Create Tble table_name(
+	column_name_1 datatype(size) constrains,
+	column_name_2 datatype(size),
+	constrain contrain_name constrai type(Column_name) 
+	constrain constraint_name FOREIGN_KEY(dep_id) REFRENCES departments(dep_id)
+	);
+
+Department Table:
+
+	Create Table departments(
+	dep_id int(4) ,
+	dep_name varchar(25) 
+	);
+
+Employee Table:
+
+	Create TABLE Employee(
+	emp_name varchar(25),
+    	emp_id int(4),
+	salary decimal(6, 3),
+	comm decimal(6, 3),
+	job_title varchar(25)
+	);
+
+Product Table:
+
+	create table products(
+	prod_id int(3),
+    	prod_name varchar(25),
+    	price decimal(5,2) DEFAULT 9.22
+    
+	);
+
+Delete Table Syntax:
+	DROP TABLE department;
+
+Constrain Type(Column Level):
+	create TABLE departments(
+	dep_id int(4) PRIMARY KEY,
+    	dep_name varchar(25) not null
+	);
+Primary Level constrain on Table Level:
+	 CONSTRAINT emp_pk PRIMARY KEY(emp_id)
+
+
+
+

@@ -1,0 +1,98 @@
+									LAB MANUAL 12 
+
+	1.
+
+	SELECT MIN(emp.SAL)"Minimum Salary", MAX(emp.SAL)"Maximum Salary", SUM(emp.SAL)"Total Salary"
+	FROM emp
+
+
+	2.
+	
+	SELECT COUNT(*)
+	FROM emp
+	WHERE emp.DEPTNO=10;
+
+	3.
+
+	SELECT DISTINCT(emp.DEPTNO)
+	FROM emp
+
+	4.
+	
+	SELECT COUNT(emp.COMM), AVG(IFnull(emp.COMM,0))
+	FROM emp
+
+	5.
+	
+	SELECT max(length(emp.ENAME))
+	FROM emp
+
+	6.
+	
+	SELECT emp.EMPNO, AVG(IFnull(emp.COMM,0))"Average"
+	FROM emp
+	GROUP BY emp.EMPNO;
+
+	7.
+	
+	SELECT emp.DEPTNO, COUNT(emp.EMPNO)"Total Employee"
+	FROM emp
+	GROUP BY emp.DEPTNO;
+
+	8.
+	
+	SELECT emp.DEPTNO,COUNT(emp.JOB), emp.JOB
+	FROM emp
+	GROUP BY emp.DEPTNO, emp.JOB;
+
+	9.
+
+	SELECT emp.DEPTNO, AVG(emp.SAL)"Average_Salary"
+	FROM emp
+	GROUP BY emp.DEPTNO
+	HAVING AVG(emp.SAL)>2000;
+
+	10.
+
+	SELECT emp.JOB, SUM(emp.SAL)"Payroll"
+	FROM emp
+	WHERE job not LIKE '%MAN%'
+	GROUP BY emp.JOB
+	HAVING SUM(emp.SAL)>2000
+	ORDER BY SUM(emp.SAL) desc;
+
+	11.
+	SELECT emp.ENAME,emp.JOB, COUNT(emp.JOB)"Count"
+	FROM emp
+	GROUP BY emp.JOB;
+
+	12.
+	SELECT emp.MGR, count(emp.EMPNO)
+	FROM emp
+	where emp.MGR IS NOT NULL
+	GROUP BY EMP.MGR;
+
+	13.
+
+	SELECT emp.MGR, MIN(EMP.SAL)"Minimum Salary"
+	FROM emp
+	WHERE emp.MGR IS NOT NULL
+	GROUP BY emp.MGR
+	HAVING MIN(EMP.SAL)<1500
+	ORDER BY MIN(EMP.SAL) DESC;
+
+	14.
+
+	SELECT dept.DNAME"Name", dept.LOC"Location", count(emp.ENAME)"Number of peoples", AVG	(emp.SAL)"Average"
+	FROM emp JOIN dept ON(emp.DEPTNO=dept.DEPTNO)
+	GROUP BY dept.DNAME, dept.LOC;
+
+	15.
+
+	Create view employees_data AS
+	SELECT concat(employees.FIRST_NAME, " ", employees.LAST_NAME)"Employee Name", employees.EMAIL, 	employees.PHONE_INT"Phone Number", jobs.JOB_TITLE, employees.MANAGER_ID
+	FROM employees NATURAL JOIN jobs;
+
+
+
+
